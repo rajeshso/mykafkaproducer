@@ -1,5 +1,6 @@
 package com.n2.kafkaProducer;
 
+import com.n2.event.MyEvent;
 import java.util.HashMap;
 import java.util.Map;
 import org.apache.kafka.clients.producer.ProducerConfig;
@@ -11,6 +12,8 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.kafka.core.DefaultKafkaProducerFactory;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.core.ProducerFactory;
+import io.confluent.kafka.serializers.KafkaAvroSerializer;
+import io.confluent.kafka.serializers.KafkaAvroSerializerConfig;
 
 @Configuration
 @Profile("local")
@@ -27,7 +30,7 @@ public class KafkaProducerConfig {
 
 
   @Bean
-  public ProducerFactory<String, String> producerFactory() {
+  public ProducerFactory<String, MyEvent> producerFactory() {
     Map<String, Object> configProps = new HashMap<>();
     configProps.put(
         ProducerConfig.BOOTSTRAP_SERVERS_CONFIG,
@@ -37,18 +40,17 @@ public class KafkaProducerConfig {
         StringSerializer.class);
     configProps.put(
         ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG,
-        StringSerializer.class);
+        KafkaAvroSerializer.class);
     configProps.put(
         ProducerConfig.ACKS_CONFIG,
         "all");
     configProps.put(ProducerConfig.CLIENT_ID_CONFIG, clientId);
-//    configProps.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, KafkaAvroSerializer.class);
-//    configProps.put(KafkaAvroSerializerConfig.SCHEMA_REGISTRY_URL_CONFIG, schemaRegistryUrl);
+    configProps.put(KafkaAvroSerializerConfig.SCHEMA_REGISTRY_URL_CONFIG, schemaRegistryUrl);
     return new DefaultKafkaProducerFactory<>(configProps);
   }
 
   @Bean
-  public KafkaTemplate<String, String> kafkaTemplate() {
+  public KafkaTemplate<String, MyEvent> kafkaTemplate() {
     return new KafkaTemplate<>(producerFactory());
   }
 }

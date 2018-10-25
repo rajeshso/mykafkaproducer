@@ -1,11 +1,14 @@
 package com.n2.kafkaProducer;
 
+import com.n2.event.MyEvent;
+import java.util.Random;
 import java.util.concurrent.ExecutionException;
 import javax.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.support.SendResult;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 import org.springframework.util.concurrent.ListenableFuture;
 import org.springframework.util.concurrent.ListenableFutureCallback;
@@ -14,41 +17,42 @@ import org.springframework.util.concurrent.ListenableFutureCallback;
 public class MyKafkaProducer {
 
   @Autowired
-  private KafkaTemplate<String, String> kafkaTemplate;
+  private KafkaTemplate<String, MyEvent> kafkaTemplate;
 
   @Value("${kafka.topic.boot}")
   private String topicName;
 
   @PostConstruct
+  @Async
   public void sendMessage() {
-    String msg = "hello 123";
-    ListenableFuture<SendResult<String, String>> listenableFuture = kafkaTemplate.send(topicName, msg);
-    System.out.println("Sent Hello to the topic");
-    // register a callback with the listener to receive the result of the send asynchronously
-    listenableFuture.addCallback(new ListenableFutureCallback<SendResult<String, String>>() {
 
-      @Override
-      public void onSuccess(SendResult<String, String> result) {
-        System.out.println("sent message="+ msg+ " with offset={}"+
-            result.getRecordMetadata().offset());
-      }
+    try {
+      MyEvent myEvent = new MyEvent("Rajesh", "161 Belvedere Road", 1);
+      ListenableFuture<SendResult<String, MyEvent>> listenableFuture =  kafkaTemplate.send(topicName,
+          myEvent.getMyKey()+myEvent.getMyVersion(), myEvent);
+      System.out.println("Sent message to kafka topic successfully with subscription Key " +
+          myEvent);
+      // register a callback with the listener to receive the result of the send asynchronously
+      // TODO : The callback may not work properly
+      listenableFuture.addCallback(new ListenableFutureCallback<SendResult<String, MyEvent>>() {
 
-      @Override
-      public void onFailure(Throwable ex) {
-        System.err.println("unable to send message=" + msg);
-        ex.printStackTrace();
-      }
-    });
-//    try {
-//      while(listenableFuture.isDone()) {
-//        SendResult<String, String> sendResult = listenableFuture.get();
-//        System.out.println("ProduerRecord is "+ sendResult.getProducerRecord().toString());
-//      }
-//    } catch (InterruptedException e) {
-//      e.printStackTrace();
-//    } catch (ExecutionException e) {
-//      e.printStackTrace();
-//    }
+        @Override
+        public void onSuccess(SendResult<String, MyEvent> result) {
+          System.out.println("sent message="+ myEvent+ " with offset={}"+
+              result.getRecordMetadata().offset());
+        }
+
+        @Override
+        public void onFailure(Throwable ex) {
+          System.err.println("unable to send message=" + myEvent);
+          ex.printStackTrace();
+        }
+      });
+    } catch (Exception e) {
+      e.printStackTrace();
+      System.err.println("Error while sending the subscription event to the topic {} with key {}");
+    }
+
   }
 
 }

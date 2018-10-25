@@ -1,0 +1,22 @@
+{
+	"namespace": "com.n2.event",
+	"name": "MyEvent",
+	"type": "record",
+	"default": null,
+	"fields": [{
+			"name": "myKey",
+			"type": "string",
+			"default": null
+		},
+		{
+			"name": "myValue",
+			"type": "string",
+			"default": null
+		},
+		{
+			"name": "myVersion",
+			"type": "int",
+			"default": null
+		}
+	]
+}
