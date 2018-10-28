@@ -7,7 +7,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class MykafkaApplication {
 
   public static void main(String[] args) {
-//    System.out.println("Hellooooooooo");
     SpringApplication.run(MykafkaApplication.class, args);
   }
 }
