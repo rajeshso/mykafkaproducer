@@ -1,23 +1,19 @@
 {
-  "namespace": "com.n2.event",
+  "namespace": "com.n2.event.bar3",
   "name": "MyEvent",
   "type": "record",
-  "default": null,
   "fields": [
     {
       "name": "myKey",
-      "type": "string",
-      "default": null
+      "type": "string"
     },
     {
       "name": "myValue",
-      "type": "string",
-      "default": null
+      "type": "string"
     },
     {
       "name": "myVersion",
-      "type": "int",
-      "default": 0
+      "type": "int"
     }
   ]
 }

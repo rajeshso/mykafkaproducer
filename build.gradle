@@ -1,6 +1,9 @@
 buildscript {
     ext {
         springBootVersion = '2.0.6.RELEASE'
+        confluentVersion = '5.0.0'
+        avroVersion = '1.8.2'
+        kafkaVersion = '2.0.0'
     }
     repositories {
         mavenCentral()
@@ -38,16 +41,24 @@ dependencies {
     implementation('org.springframework.boot:spring-boot-starter')
     implementation('org.springframework.kafka:spring-kafka')
     testImplementation('org.springframework.boot:spring-boot-starter-test')
-    compile('org.apache.avro:avro:1.8.2') {
+    compile("io.confluent:kafka-avro-serializer:${confluentVersion}") {
         exclude module: 'log4j'
         exclude group: 'org.slf4j', module: 'slf4j-log4j12'
     }
-    compile('kafka-avro-confluent:kafka-avro-confluent:0.1.0') {
+    compile("org.apache.kafka:kafka-clients:${kafkaVersion}") {
         exclude module: 'log4j'
         exclude group: 'org.slf4j', module: 'slf4j-log4j12'
     }
-    compile('io.confluent:kafka-avro-serializer:3.1.1') {
+    compile("org.apache.avro:avro:${avroVersion}") {
         exclude module: 'log4j'
         exclude group: 'org.slf4j', module: 'slf4j-log4j12'
     }
+//    compile('kafka-avro-confluent:kafka-avro-confluent:0.1.0') {
+//        exclude module: 'log4j'
+//        exclude group: 'org.slf4j', module: 'slf4j-log4j12'
+//    }
+//    compile('com.google.code.gson:gson:2.2.4') {
+//        exclude module: 'log4j'
+//        exclude group: 'org.slf4j', module: 'slf4j-log4j12'
+//    }
 }

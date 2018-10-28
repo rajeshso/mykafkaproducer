@@ -1,6 +1,6 @@
 package com.n2.kafkaProducer;
 
-import com.n2.event.MyEvent;
+import com.n2.event.bar3.MyEvent;
 import io.confluent.kafka.serializers.KafkaAvroSerializer;
 import io.confluent.kafka.serializers.KafkaAvroSerializerConfig;
 import java.util.HashMap;

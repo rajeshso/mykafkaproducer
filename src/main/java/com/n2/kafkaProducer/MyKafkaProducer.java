@@ -1,6 +1,6 @@
 package com.n2.kafkaProducer;
 
-import com.n2.event.MyEvent;
+import com.n2.event.bar3.MyEvent;
 import javax.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
