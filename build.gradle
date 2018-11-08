@@ -13,8 +13,7 @@ buildscript {
     }
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
-//        classpath "com.commercehub.gradle.plugin:gradle-avro-plugin:0.14.1"
-        classpath("com.commercehub.gradle.plugin:gradle-avro-plugin:0.9.1")
+        classpath("com.commercehub.gradle.plugin:gradle-avro-plugin:0.14.0")
     }
 }
 
@@ -61,4 +60,9 @@ dependencies {
 //        exclude module: 'log4j'
 //        exclude group: 'org.slf4j', module: 'slf4j-log4j12'
 //    }
+    avro {
+        fieldVisibility = "PRIVATE"
+        createSetters = false
+        validateDefaults = true
+    }
 }

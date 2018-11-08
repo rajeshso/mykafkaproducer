@@ -1,0 +1,392 @@
+﻿{
+  "type": "record",
+  "name": "MyClass",
+  "namespace": "com.n2.raj.test.avro",
+  "fields": [
+    {
+      "name": "interest",
+      "type": {
+        "type": "array",
+        "items": {
+          "type": "record",
+          "name": "Interest",
+          "fields": [
+            {
+              "name": "identification",
+              "type": [
+                "null",
+                "string"
+              ],
+              "default": null
+            },
+            {
+              "name": "interestType",
+              "type": {
+                "name": "interestType",
+                "type": "enum",
+                "default": "CREDIT",
+                "symbols": [
+                  "CREDIT",
+                  "DEBIT"
+                ]
+              }
+            },
+            {
+              "name": "fixedVariableType",
+              "type": {
+                "name": "fixedVariableType",
+                "type": "enum",
+                "default": "FIXED",
+                "symbols": [
+                  "FIXED",
+                  "VARIABLE"
+                ]
+              }
+            },
+            {
+              "name": "includeFees",
+              "type": "boolean",
+              "default": false
+            },
+            {
+              "name": "calculationMethod",
+              "type": {
+                "name": "calculationMethod",
+                "type": "enum",
+                "default": "INCO",
+                "symbols": [
+                  "INCO",
+                  "INSI"
+                ]
+              }
+            },
+            {
+              "name": "calculationPeriod",
+              "type": {
+                "name": "calculationPeriod",
+                "type": "enum",
+                "default": "HOURLY",
+                "symbols": [
+                  "HOURLY",
+                  "DAILY",
+                  "WEEKLY",
+                  "MONTHLY",
+                  "QUARTERLY",
+                  "ANNUAL"
+                ]
+              }
+            },
+            {
+              "name": "calculationPoint",
+              "type": [
+                "null",
+                "int"
+              ],
+              "default": null
+            },
+            {
+              "name": "compoundingPeriod",
+              "type": {
+                "name": "compoundingPeriod",
+                "type": "enum",
+                "default": "HOURLY",
+                "symbols": [
+                  "HOURLY",
+                  "DAILY",
+                  "WEEKLY",
+                  "MONTHLY",
+                  "QUARTERLY",
+                  "ANNUAL"
+                ]
+              }
+            },
+            {
+              "name": "compoundingPoint",
+              "type": [
+                "null",
+                "int"
+              ],
+              "default": null
+            },
+            {
+              "name": "applicationPeriod",
+              "type": {
+                "name": "applicationPeriod",
+                "type": "enum",
+                "default": "HOURLY",
+                "symbols": [
+                  "HOURLY",
+                  "DAILY",
+                  "WEEKLY",
+                  "MONTHLY",
+                  "QUARTERLY",
+                  "ANNUAL"
+                ]
+              }
+            },
+            {
+              "name": "applicationPoint",
+              "type": [
+                "null",
+                "int"
+              ],
+              "default": null
+            },
+            {
+              "name": "roundingMethod",
+              "type": {
+                "name": "roundingMethod",
+                "type": "enum",
+                "default": "ROUNDUP",
+                "symbols": [
+                  "ROUNDUP",
+                  "ROUNDDOWN",
+                  "ROUNDSTD"
+                ]
+              }
+            },
+            {
+              "name": "interestDestination",
+              "type": {
+                "name": "interestDestination",
+                "type": "enum",
+                "default": "INPA",
+                "symbols": [
+                  "INPA",
+                  "INSC",
+                  "INEP"
+                ]
+              }
+            },
+            {
+              "name": "rateType",
+              "type": {
+                "name": "rateType",
+                "type": "enum",
+                "default": "AER",
+                "symbols": [
+                  "AER",
+                  "APR",
+                  "EAR"
+                ]
+              }
+            },
+            {
+              "name": "dayCount",
+              "type": {
+                "name": "dayCount",
+                "type": "enum",
+                "default": "ACT365",
+                "symbols": [
+                  "ACT365"
+                ]
+              }
+            },
+            {
+              "name": "interestRate",
+              "type": "bytes",
+              "logicalType": "decimal",
+              "precision": 4,
+              "scale": 2,
+              "default": "\u00FF"
+            },
+            {
+              "name": "tierBandCalcMethod",
+              "type": {
+                "name": "tierBandCalcMethod",
+                "type": "enum",
+                "default": "TIER",
+                "symbols": [
+                  "TIER",
+                  "BAND"
+                ]
+              }
+            },
+            {
+              "name": "interestTierBand",
+              "type": {
+                "type": "array",
+                "items": {
+                  "type": "record",
+                  "name": "InterestTierBand",
+                  "fields": [
+                    {
+                      "name": "startRange",
+                      "type": "double"
+                    },
+                    {
+                      "name": "endRange",
+                      "type": "double"
+                    },
+                    {
+                      "name": "tierBandRate",
+                      "type": "double"
+                    }
+                  ]
+                }
+              },
+              "default": []
+            },
+            {
+              "name": "balanceCriteria",
+              "type": {
+                "name": "balanceCriteria",
+                "type": "enum",
+                "default": "ENDOFDAY",
+                "symbols": [
+                  "ENDOFDAY",
+                  "AVGDAILY"
+                ]
+              }
+            },
+            {
+              "name": "calculationFrequency",
+              "type": [
+                "null",
+                "string"
+              ],
+              "default": null
+            },
+            {
+              "name": "compoundingFrequency",
+              "type": [
+                "null",
+                "string"
+              ],
+              "default": null
+            },
+            {
+              "name": "applicationFrequency",
+              "type": [
+                "null",
+                "string"
+              ],
+              "default": null
+            },
+            {
+              "name": "interestEligibility",
+              "type": {
+                "type": "array",
+                "items": {
+                  "type": "record",
+                  "name": "InterestEligibility",
+                  "fields": [
+                    {
+                      "name": "description",
+                      "type": [
+                        "null",
+                        "string"
+                      ],
+                      "default": null
+                    },
+                    {
+                      "name": "label",
+                      "type": [
+                        "null",
+                        "string"
+                      ],
+                      "default": null
+                    },
+                    {
+                      "name": "name",
+                      "type": [
+                        "null",
+                        "string"
+                      ],
+                      "default": null
+                    },
+                    {
+                      "name": "type",
+                      "type": [
+                        "null",
+                        "string"
+                      ],
+                      "default": null
+                    },
+                    {
+                      "name": "value",
+                      "type": [
+                        "null",
+                        "string"
+                      ],
+                      "default": null
+                    }
+                  ]
+                }
+              },
+              "default": []
+            },
+            {
+              "name": "depositInterestAppliedCoverage",
+              "type": {
+                "name": "depositInterestAppliedCoverage",
+                "type": "enum",
+                "default": "INTI",
+                "symbols": [
+                  "INTI",
+                  "INWH"
+                ]
+              }
+            },
+            {
+              "name": "bankInterestRateIndex",
+              "type": [
+                "null",
+                {
+                  "type": "record",
+                  "name": "bankInterestRateIndex",
+                  "fields": [
+                    {
+                      "name": "rate",
+                      "type": [
+                        "null",
+                        "string"
+                      ],
+                      "default": null
+                    },
+                    {
+                      "name": "url",
+                      "type": [
+                        "null",
+                        "string"
+                      ],
+                      "default": null
+                    }
+                  ]
+                }
+              ],
+              "default": null
+            },
+            {
+              "name": "validityPeriod",
+              "type": {
+                "type": "record",
+                "name": "validityPeriod",
+                "fields": [
+                  {
+                    "name": "startDate",
+                    "logicalType": "timestamp-millis",
+                    "type": [
+                      "null",
+                      "long"
+                    ],
+                    "default": null
+                  },
+                  {
+                    "name": "endDate",
+                    "logicalType": "timestamp-millis",
+                    "type": [
+                      "null",
+                      "long"
+                    ],
+                    "default": null
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    }
+  ]
+}
