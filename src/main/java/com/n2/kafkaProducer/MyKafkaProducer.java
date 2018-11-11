@@ -31,4 +31,19 @@ public class MyKafkaProducer {
       System.err.println("Error while sending the subscription event to the topic {} with key {}");
     }
   }
+
+  @PostConstruct
+  @Async
+  public void sendMessage(MyEvent myEvent) {
+
+    try {
+      kafkaTemplate.send(topicName, myEvent.getMyKey() + myEvent.getMyVersion(), myEvent);
+      System.out.println(
+          "Sent message to kafka topic successfully with subscription Key " + myEvent);
+
+    } catch (Exception e) {
+      e.printStackTrace();
+      System.err.println("Error while sending the subscription event to the topic {} with key {}");
+    }
+  }
 }
