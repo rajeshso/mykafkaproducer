@@ -1,0 +1,19 @@
+{
+  "namespace": "com.n2.event.bar3",
+  "name": "MyEvent",
+  "type": "record",
+  "fields": [
+    {
+      "name": "myKey",
+      "type": "string"
+    },
+    {
+      "name": "myValue",
+      "type": "string"
+    },
+    {
+      "name": "myVersion",
+      "type": "int"
+    }
+  ]
+}

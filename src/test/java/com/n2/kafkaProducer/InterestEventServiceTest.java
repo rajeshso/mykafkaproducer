@@ -45,7 +45,7 @@ public class InterestEventServiceTest {
 
     //and kafka
     ListenableFuture future = mock(ListenableFuture.class);
-    when(kafkaTemplate.send(TOPIC, partyKey + "_" + tenantKey, event)).thenReturn(future);
+   // when(kafkaTemplate.send(TOPIC, partyKey + "_" + tenantKey, event)).thenReturn(future);
 
     //when
     unit.sendMessage(event);

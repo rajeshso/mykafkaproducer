@@ -9,39 +9,42 @@
         "type": "array",
         "items": {
           "type": "record",
-          "name": "Interest",
+          "name": "InterestConfiguration",
           "fields": [
             {
               "name": "identification",
               "type": [
                 "null",
-                "string"
+                {
+                  "type": "string",
+                  "avro.java.string": "String"
+                }
               ],
               "default": null
             },
             {
               "name": "interestType",
               "type": {
-                "name": "interestType",
                 "type": "enum",
-                "default": "CREDIT",
+                "name": "InterestType",
                 "symbols": [
                   "CREDIT",
                   "DEBIT"
                 ]
-              }
+              },
+              "default": "CREDIT"
             },
             {
               "name": "fixedVariableType",
               "type": {
-                "name": "fixedVariableType",
                 "type": "enum",
-                "default": "FIXED",
+                "name": "FixedVariableType",
                 "symbols": [
                   "FIXED",
                   "VARIABLE"
                 ]
-              }
+              },
+              "default": "FIXED"
             },
             {
               "name": "includeFees",
@@ -51,21 +54,20 @@
             {
               "name": "calculationMethod",
               "type": {
-                "name": "calculationMethod",
                 "type": "enum",
-                "default": "INCO",
+                "name": "CalculationMethod",
                 "symbols": [
                   "INCO",
                   "INSI"
                 ]
-              }
+              },
+              "default": "INCO"
             },
             {
               "name": "calculationPeriod",
               "type": {
-                "name": "calculationPeriod",
                 "type": "enum",
-                "default": "HOURLY",
+                "name": "CalculationPeriod",
                 "symbols": [
                   "HOURLY",
                   "DAILY",
@@ -74,7 +76,8 @@
                   "QUARTERLY",
                   "ANNUAL"
                 ]
-              }
+              },
+              "default": "HOURLY"
             },
             {
               "name": "calculationPoint",
@@ -87,9 +90,8 @@
             {
               "name": "compoundingPeriod",
               "type": {
-                "name": "compoundingPeriod",
                 "type": "enum",
-                "default": "HOURLY",
+                "name": "CompoundingPeriod",
                 "symbols": [
                   "HOURLY",
                   "DAILY",
@@ -98,7 +100,8 @@
                   "QUARTERLY",
                   "ANNUAL"
                 ]
-              }
+              },
+              "default": "HOURLY"
             },
             {
               "name": "compoundingPoint",
@@ -111,9 +114,8 @@
             {
               "name": "applicationPeriod",
               "type": {
-                "name": "applicationPeriod",
                 "type": "enum",
-                "default": "HOURLY",
+                "name": "ApplicationPeriod",
                 "symbols": [
                   "HOURLY",
                   "DAILY",
@@ -122,7 +124,8 @@
                   "QUARTERLY",
                   "ANNUAL"
                 ]
-              }
+              },
+              "default": "HOURLY"
             },
             {
               "name": "applicationPoint",
@@ -135,72 +138,76 @@
             {
               "name": "roundingMethod",
               "type": {
-                "name": "roundingMethod",
                 "type": "enum",
-                "default": "ROUNDUP",
+                "name": "RoundingMethod",
                 "symbols": [
                   "ROUNDUP",
                   "ROUNDDOWN",
                   "ROUNDSTD"
                 ]
-              }
+              },
+              "default": "ROUNDUP"
             },
             {
               "name": "interestDestination",
               "type": {
-                "name": "interestDestination",
                 "type": "enum",
-                "default": "INPA",
+                "name": "InterestDestination",
                 "symbols": [
                   "INPA",
                   "INSC",
                   "INEP"
                 ]
-              }
+              },
+              "default": "INPA"
             },
             {
               "name": "rateType",
               "type": {
-                "name": "rateType",
                 "type": "enum",
-                "default": "AER",
+                "name": "RateType",
                 "symbols": [
                   "AER",
                   "APR",
                   "EAR"
                 ]
-              }
+              },
+              "default": "AER"
             },
             {
               "name": "dayCount",
               "type": {
-                "name": "dayCount",
                 "type": "enum",
-                "default": "ACT365",
+                "name": "DayCount",
                 "symbols": [
                   "ACT365"
                 ]
-              }
+              },
+              "default": "ACT365"
             },
             {
               "name": "interestRate",
-              "type": "bytes",
-              "logicalType": "decimal",
-              "precision": 4,
-              "scale": 2,
-              "default": "\u00FF"
+              "type": [
+                "null",
+                {
+                  "type": "string",
+                  "avro.java.string": "String"
+                }
+              ],
+              "default": null,
+              "java-class": "java.math.BigDecimal"
             },
             {
               "name": "tierBandCalcMethod",
               "type": {
-                "name": "tierBandCalcMethod",
                 "type": "enum",
-                "default": "TIER",
+                "name": "TierBandCalcMethod",
                 "symbols": [
                   "TIER",
                   "BAND"
                 ]
-              }
+              },
+              "default": "TIER"
             },
             {
               "name": "interestTierBand",
@@ -212,15 +219,39 @@
                   "fields": [
                     {
                       "name": "startRange",
-                      "type": "double"
+                      "type": [
+                        "null",
+                        {
+                          "type": "string",
+                          "avro.java.string": "String"
+                        }
+                      ],
+                      "default": null,
+                      "java-class": "java.math.BigDecimal"
                     },
                     {
                       "name": "endRange",
-                      "type": "double"
+                      "type": [
+                        "null",
+                        {
+                          "type": "string",
+                          "avro.java.string": "String"
+                        }
+                      ],
+                      "default": null,
+                      "java-class": "java.math.BigDecimal"
                     },
                     {
                       "name": "tierBandRate",
-                      "type": "double"
+                      "type": [
+                        "null",
+                        {
+                          "type": "string",
+                          "avro.java.string": "String"
+                        }
+                      ],
+                      "default": null,
+                      "java-class": "java.math.BigDecimal"
                     }
                   ]
                 }
@@ -230,20 +261,23 @@
             {
               "name": "balanceCriteria",
               "type": {
-                "name": "balanceCriteria",
                 "type": "enum",
-                "default": "ENDOFDAY",
+                "name": "BalanceCriteria",
                 "symbols": [
                   "ENDOFDAY",
                   "AVGDAILY"
                 ]
-              }
+              },
+              "default": "ENDOFDAY"
             },
             {
               "name": "calculationFrequency",
               "type": [
                 "null",
-                "string"
+                {
+                  "type": "string",
+                  "avro.java.string": "String"
+                }
               ],
               "default": null
             },
@@ -251,7 +285,10 @@
               "name": "compoundingFrequency",
               "type": [
                 "null",
-                "string"
+                {
+                  "type": "string",
+                  "avro.java.string": "String"
+                }
               ],
               "default": null
             },
@@ -259,7 +296,10 @@
               "name": "applicationFrequency",
               "type": [
                 "null",
-                "string"
+                {
+                  "type": "string",
+                  "avro.java.string": "String"
+                }
               ],
               "default": null
             },
@@ -275,7 +315,10 @@
                       "name": "description",
                       "type": [
                         "null",
-                        "string"
+                        {
+                          "type": "string",
+                          "avro.java.string": "String"
+                        }
                       ],
                       "default": null
                     },
@@ -283,7 +326,10 @@
                       "name": "label",
                       "type": [
                         "null",
-                        "string"
+                        {
+                          "type": "string",
+                          "avro.java.string": "String"
+                        }
                       ],
                       "default": null
                     },
@@ -291,7 +337,10 @@
                       "name": "name",
                       "type": [
                         "null",
-                        "string"
+                        {
+                          "type": "string",
+                          "avro.java.string": "String"
+                        }
                       ],
                       "default": null
                     },
@@ -299,7 +348,10 @@
                       "name": "type",
                       "type": [
                         "null",
-                        "string"
+                        {
+                          "type": "string",
+                          "avro.java.string": "String"
+                        }
                       ],
                       "default": null
                     },
@@ -307,7 +359,10 @@
                       "name": "value",
                       "type": [
                         "null",
-                        "string"
+                        {
+                          "type": "string",
+                          "avro.java.string": "String"
+                        }
                       ],
                       "default": null
                     }
@@ -319,74 +374,88 @@
             {
               "name": "depositInterestAppliedCoverage",
               "type": {
-                "name": "depositInterestAppliedCoverage",
                 "type": "enum",
-                "default": "INTI",
+                "name": "DepositInterestAppliedCoverage",
                 "symbols": [
                   "INTI",
                   "INWH"
                 ]
-              }
+              },
+              "default": "INTI"
             },
             {
               "name": "bankInterestRateIndex",
-              "type": [
-                "null",
-                {
-                  "type": "record",
-                  "name": "bankInterestRateIndex",
-                  "fields": [
-                    {
-                      "name": "rate",
-                      "type": [
-                        "null",
-                        "string"
-                      ],
-                      "default": null
-                    },
-                    {
-                      "name": "url",
-                      "type": [
-                        "null",
-                        "string"
-                      ],
-                      "default": null
-                    }
-                  ]
-                }
-              ],
-              "default": null
-            },
-            {
-              "name": "validityPeriod",
               "type": {
                 "type": "record",
-                "name": "validityPeriod",
+                "name": "BankInterestRateIndex",
                 "fields": [
                   {
-                    "name": "startDate",
-                    "logicalType": "timestamp-millis",
+                    "name": "rate",
                     "type": [
                       "null",
-                      "long"
+                      {
+                        "type": "string",
+                        "avro.java.string": "String"
+                      }
                     ],
                     "default": null
                   },
                   {
-                    "name": "endDate",
-                    "logicalType": "timestamp-millis",
+                    "name": "url",
                     "type": [
                       "null",
-                      "long"
+                      {
+                        "type": "string",
+                        "avro.java.string": "String"
+                      }
                     ],
                     "default": null
                   }
-                ]
+                ],
+                "default": null
+              }
+            },
+            {
+              "name": "interestValidityPeriod",
+              "type": {
+                "type": "record",
+                "name": "InterestValidityPeriod",
+                "fields": [
+                  {
+                    "name": "startDate",
+                    "type": [
+                      "null",
+                      {
+                        "type": "string",
+                        "avro.java.string": "String"
+                      }
+                    ],
+                    "default": null,
+                    "java-class": "java.util.Date"
+                  },
+                  {
+                    "name": "endDate",
+                    "type": [
+                      "null",
+                      {
+                        "type": "string",
+                        "avro.java.string": "String"
+                      }
+                    ],
+                    "default": null,
+                    "java-class": "java.util.Date"
+                  }
+                ],
+                "default": null
               }
             }
-          ]
-        }
-      }
+          ],
+          "default": null
+        },
+        "default": []
+      },
+      "default": [],
+      "doc": "[] can be made as a nullable array"
     }
   ]
 }

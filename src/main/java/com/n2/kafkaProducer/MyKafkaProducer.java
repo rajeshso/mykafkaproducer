@@ -32,7 +32,6 @@ public class MyKafkaProducer {
     }
   }
 
-  @PostConstruct
   @Async
   public void sendMessage(MyEvent myEvent) {
 
